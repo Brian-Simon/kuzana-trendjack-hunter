@@ -9,7 +9,6 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@sentry/nextjs": "^7.98.0",
     "@supabase/supabase-js": "^2.43.0",
     "fast-xml-parser": "^5.9.3",
     "next": "^16.2.9",
