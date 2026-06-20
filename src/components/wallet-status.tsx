@@ -2,7 +2,6 @@
 
 import { useActiveAccount, useDisconnect } from 'thirdweb/react';
 import { embeddedWallet } from 'thirdweb/wallets';
-import { client } from '@/lib/client';
 
 export function WalletStatus() {
   const account = useActiveAccount();
@@ -14,7 +13,7 @@ export function WalletStatus() {
 
   const handleDisconnect = async () => {
     if (disconnect) {
-      await disconnect(embeddedWallet({ chain: 'Avalanche', client }));
+      await disconnect(embeddedWallet());
     }
   };
 
