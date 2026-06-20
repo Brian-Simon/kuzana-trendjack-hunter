@@ -14,6 +14,11 @@ export function WalletConnectButton() {
       await connect({});
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Connection failed';
+      // Suppress non-critical wallet initialization errors
+      if (errorMsg.includes('Can not set a wallet')) {
+        console.debug('Wallet modal opening...', errorMsg);
+        return;
+      }
       setError(errorMsg);
       console.error('Connection error:', err);
     }
