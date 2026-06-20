@@ -1,6 +1,7 @@
 'use client';
 
 import { useActiveAccount, useConnect } from 'thirdweb/react';
+import { embeddedWallet } from 'thirdweb/wallets';
 import { useState } from 'react';
 
 export function WalletConnectButton() {
@@ -11,8 +12,8 @@ export function WalletConnectButton() {
   const handleConnect = async () => {
     setIsLoading(true);
     try {
-      // Show wallet options
-      const result = await connect();
+      // Show wallet options with embedded wallet
+      const result = await connect({ wallet: embeddedWallet() });
       console.log('Connected:', result);
     } catch (error) {
       console.error('Connection error:', error);
