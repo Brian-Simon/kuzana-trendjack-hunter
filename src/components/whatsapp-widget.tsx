@@ -9,14 +9,21 @@ export function WhatsAppWidget() {
       href="https://wa.me/254786817637"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-8 right-8 z-50 group"
+      className="group"
+      style={{
+        position: 'fixed',
+        bottom: '2rem',
+        right: '2rem',
+        zIndex: 9999,
+        display: 'block',
+      }}
       aria-label="Chat with us on WhatsApp"
     >
       {/* Glow background circle */}
       <div className="absolute inset-0 bg-green-500/30 rounded-full blur-3xl group-hover:bg-green-500/50 transition-all duration-300 scale-125"></div>
       
       {/* Main button */}
-      <div className="relative w-20 h-20 bg-gradient-to-br from-green-400 via-green-500 to-green-600 rounded-full shadow-2xl group-hover:shadow-2xl group-hover:shadow-green-500/70 group-hover:scale-125 transition-all duration-300 flex items-center justify-center">
+      <div className="relative bg-gradient-to-br from-green-400 via-green-500 to-green-600 rounded-full shadow-2xl group-hover:shadow-2xl group-hover:shadow-green-500/70 group-hover:scale-125 transition-all duration-300 flex items-center justify-center" style={{ width: '80px', height: '80px' }}>
         <Image
           src="/images/whatsapp-3d.png"
           alt="WhatsApp Chat"
