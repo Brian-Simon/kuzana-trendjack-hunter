@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { WalletConnectButton } from './wallet-connect-button';
+import { WalletErrorBoundary } from './wallet-error-boundary';
 import { UserMenu } from './user-menu';
 
 export function Header() {
@@ -49,7 +50,9 @@ export function Header() {
 
         {/* Right Side: Wallet + Menu */}
         <div className="flex items-center gap-3">
-          <WalletConnectButton />
+          <WalletErrorBoundary>
+            <WalletConnectButton />
+          </WalletErrorBoundary>
           <UserMenu />
         </div>
       </div>
