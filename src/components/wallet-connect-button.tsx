@@ -11,7 +11,7 @@ export function WalletConnectButton() {
   const handleConnect = async () => {
     setError(null);
     try {
-      await connect();
+      await connect({});
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Connection failed';
       setError(errorMsg);
