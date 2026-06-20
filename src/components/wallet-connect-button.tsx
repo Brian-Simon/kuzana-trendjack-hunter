@@ -13,7 +13,7 @@ export function WalletConnectButton() {
     setIsLoading(true);
     try {
       // Show wallet options with embedded wallet
-      const result = await connect({ wallet: embeddedWallet() });
+      const result = await connect(embeddedWallet());
       console.log('Connected:', result);
     } catch (error) {
       console.error('Connection error:', error);
