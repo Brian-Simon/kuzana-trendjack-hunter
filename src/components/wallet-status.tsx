@@ -12,7 +12,7 @@ export function WalletStatus() {
 
   const handleDisconnect = async () => {
     if (disconnect) {
-      await disconnect(account);
+      await disconnect();
     }
   };
 
