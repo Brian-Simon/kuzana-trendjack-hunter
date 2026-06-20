@@ -1,5 +1,6 @@
 import './globals.css';
 import { ThirdwebClientProvider } from '@/components/thirdweb-provider';
+import { WhatsAppWidget } from '@/components/whatsapp-widget';
 import type { ReactNode } from 'react';
 
 export const metadata = {
@@ -14,6 +15,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ThirdwebClientProvider>
           {children}
         </ThirdwebClientProvider>
+        <WhatsAppWidget />
       </body>
     </html>
   );

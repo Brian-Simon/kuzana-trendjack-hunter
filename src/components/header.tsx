@@ -48,7 +48,7 @@ export function Header() {
         </nav>
 
         {/* Right Side: Wallet + Menu */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <WalletConnectButton />
           <UserMenu />
         </div>
