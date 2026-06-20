@@ -10,6 +10,12 @@ export function WalletStatus() {
     return null;
   }
 
+  const handleDisconnect = async () => {
+    if (disconnect) {
+      await disconnect(account);
+    }
+  };
+
   return (
     <div className="flex items-center gap-3">
       <div className="flex flex-col gap-1">
@@ -17,7 +23,7 @@ export function WalletStatus() {
         <p className="text-sm font-mono text-white">{account.address?.slice(0, 6)}...{account.address?.slice(-4)}</p>
       </div>
       <button
-        onClick={() => disconnect?.()}
+        onClick={handleDisconnect}
         className="rounded px-3 py-1 text-xs font-medium text-white hover:bg-white/10 transition-colors"
       >
         Disconnect
