@@ -1,4 +1,5 @@
 import './globals.css';
+import { ThirdwebClientProvider } from '@/components/thirdweb-provider';
 import type { ReactNode } from 'react';
 
 export const metadata = {
@@ -10,7 +11,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
-        {children}
+        <ThirdwebClientProvider>
+          {children}
+        </ThirdwebClientProvider>
       </body>
     </html>
   );

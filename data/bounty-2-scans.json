@@ -1,5 +1,447 @@
 [
   {
+    "topic": "founder culture",
+    "topTrend": {
+      "title": "Launch HN: Adam (YC W25) – Open-Source AI CAD",
+      "topic": "founder culture",
+      "score": 193,
+      "sourceCount": 4,
+      "lifespan": "3-7 days",
+      "whyItMatters": "It maps quickly to audience identity, which keeps the conversation moving in founder circles. The longer lifespan lets you catch follow-up angles."
+    },
+    "items": [
+      {
+        "source": "Hacker News",
+        "title": "Launch HN: Adam (YC W25) – Open-Source AI CAD",
+        "url": "https://github.com/Adam-CAD/CADAM",
+        "publishedAt": "2026-06-17T16:14:04.000Z",
+        "engagement": 501,
+        "impressions": 6400,
+        "excerpt": "Hey HN! I&#x27;m Zach from Adam (<a href=\"https:&#x2F;&#x2F;adam.new&#x2F;\">https:&#x2F;&#x2F;adam.new&#x2F;</a>). We&#x27;re building AI agents for mechanical CAD software. We’ve built the company on two fundamental beliefs:<p>- AI will be the primary medium for creating mechanical designs just like it is in software today.<p>- The best paradigm for CAD generation is to generate CAD as code (text -&gt; code -&gt; CAD).<p>We’re building CADAM, an open source Text to CAD platform. It&#x27;s a React app (TanStack Start) with a Supabase backend for auth, database, and file storage. Think of it like AI TinkerCAD.<p>Demo: <a href=\"https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=iESOr7EGWqk\" rel=\"nofollow\">https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=iESOr7EGWqk</a> Try it: <a href=\"https:&#x2F;&#x2F;adam.new&#x2F;cadam&#x2F;\">https:&#x2F;&#x2F;adam.new&#x2F;cadam&#x2F;</a><p>What it does:<p>- Generates parametric 3D models from natural language, with support for both text prompts and image references.<p>- Outputs OpenSCAD code with automatically extracted parameters that surface as interactive sliders for instant dimension tweaking<p>- Exports as .STL or .SCAD (plus OBJ, GLB&#x2F;GLTF, FBX, and DXF)<p>Under the hood:<p>- One agentic endpoint with two modes that swap system prompts and tools: a parametric mode that writes&#x2F;edits OpenSCAD via a build_parametric_model tool, and a mesh mode that generates 3D textured meshes.<p>- Simple parameter tweaks bypass the model entirely; adjusting a slider does a deterministic regex update on the SCAD source, requiring no LLM call.<p>- Model-agnostic via the Vercel AI SDK: Anthropic (Claude), Google (Gemini), and OpenAI&#x2F;others through OpenRouter, with adaptive thinking auto-enabled on newer models. Surprisingly, in our evals Gemini 3.1 Pro is the top model.<p>- Runs fully in-browser by compiling OpenSCAD to WebAssembly (in a Web Worker, so the UI never blocks) and rendering with Three.js via React Three Fiber<p>- Supports BOSL, BOSL2, and MCAD libraries, plus custom font support (Geist) for text in models<p>Future improvements:<p>- Support both build123d and CadQuery. This will allow us to move beyond CSG primitives to constraint-driven modeling and provide direct comparisons to other code-as-CAD primitives.<p>- Better spatial context: UI for face&#x2F;edge selection and viewport image integration to give LLMs spatial understanding<p>You can clone the repo and run it locally! Contributions are very welcome.",
+        "media": {
+          "kind": "article",
+          "altText": "Launch HN: Adam (YC W25) – Open-Source AI CAD",
+          "sourceHint": "HN story link"
+        }
+      },
+      {
+        "source": "Hacker News",
+        "title": "Launch HN: Intuned (YC S22) – Build and run reliable browser automations as code",
+        "url": "https://intunedhq.com",
+        "publishedAt": "2026-06-08T13:35:27.000Z",
+        "engagement": 288,
+        "impressions": 3684,
+        "excerpt": "Hey HN, we&#x27;re Faisal and Ahmad from Intuned (<a href=\"https:&#x2F;&#x2F;intunedhq.com\">https:&#x2F;&#x2F;intunedhq.com</a>). We’re building a platform for building, deploying, and maintaining browser automations.<p>Customers primarily use the Intuned AI agent to automate websites that don&#x27;t expose APIs. Common use-cases include scraping data, pulling reports, and submitting forms. As the website changes, our agent also helps automatically heal the automation.<p>On Intuned, browser automations are created by an AI agent and run as <i>code</i>. Our infra captures the context of every run, allowing our agent to debug and maintain the underlying code - to keep the automations working over time. This way, we’re able to offer the predictability, speed, and cost of code, without the painful parts of writing and maintaining it.<p>Here’s a demo of building a scraper on Intuned: <a href=\"https:&#x2F;&#x2F;youtu.be&#x2F;ruZP73bK4FU\" rel=\"nofollow\">https:&#x2F;&#x2F;youtu.be&#x2F;ruZP73bK4FU</a><p>Here’s a demo of using AI to maintain a project: <a href=\"https:&#x2F;&#x2F;youtu.be&#x2F;e4R4hLdHBro\" rel=\"nofollow\">https:&#x2F;&#x2F;youtu.be&#x2F;e4R4hLdHBro</a><p>Backstory: we were accepted into YC for a completely different idea. During the batch, because of Faisal&#x27;s background at UiPath, several batchmates asked us whether RPA tools could fill API gaps in their products by automating websites without APIs. When it was time to pivot, we went back to those founders to dig deeper. (RPA in this context is referring to using UI automation to do complete non-testing tasks)<p>We discovered that the actual hard problem in browser automation is maintenance. Websites change, selectors break, and failures can be painful to reproduce and fix. So in early 2024, we decided to take a crack at this problem with a handful of customers. It needed a fair number of iterations before we landed on our current code-first approach.<p>How it works: Intuned is infra + agent, deeply integrated.<p>On the infrastructure side, Intuned is a managed runtime for browser automation code. Projects are usually Playwright-based TypeScript or Python. Users can write them directly in our online IDE, or hand the work off to the agent. Either way, once deployed, the platform runs each project in its own isolated machine and handles auth&#x2F;session reuse, scheduling, batch execution, concurrency, observability, and the other plumbing around running browser code.<p>On the agent side, it took us a few iterations to get to the current approach. Our initial attempts were rigid pipelines: collect requirements, inspect the site, generate code, then try to patch whatever broke. It looked reasonable on paper, but real websites are too messy for fixed paths. Late last year, we were planning to ship that version when stronger models landed and harnesses like Claude Code and Codex showed what a more open-ended coding agent could do. We built a prototype on the Claude Agent SDK, it felt much better than what we had, and we scrapped the release and decided to rebuild the agent.<p>The rebuild came down to three pieces around the SDK: an execution environment for running long agent sessions reliably, a CLI that exposes the platform to the agent so it operates Intuned the way engineers do, and a custom plugin (skills + MCP) built around what we&#x27;ve learned building browser automations.<p>The infra-agent integration is where the product gets more interesting. The runtime doesn&#x27;t just run the automation; it captures the context needed to debug it when it fails: params, results, traces, logs. That enables features like Fix with AI, where you can open a failed run and have the agent investigate and prepare a fix.<p>The same integration powers a feature called self-healing. For configured projects, the platform detects failures, starts an agent session with the relevant context, and either proposes a fix for review or deploys it automatically. Demo: <a href=\"https:&#x2F;&#x2F;youtu.be&#x2F;IVHIXw0lYMs\" rel=\"nofollow\">https:&#x2F;&#x2F;youtu.be&#x2F;IVHIXw0lYMs</a><p>We recently also packaged the infra and agent as an API called Web Task API, here is a demo: <a href=\"https:&#x2F;&#x2F;youtu.be&#x2F;1olRn3l95vw\" rel=\"nofollow\">https:&#x2F;&#x2F;youtu.be&#x2F;1olRn3l95vw</a><p>We strongly believe that browser automations can and should be faster, cheaper and more predictable. Check us out at <a href=\"https:&#x2F;&#x2F;app.intuned.io&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;app.intuned.io&#x2F;</a>, we have a free tier with trial credits for your first few automations. Excited to hear your thoughts, questions, and feedback!",
+        "media": {
+          "kind": "article",
+          "altText": "Launch HN: Intuned (YC S22) – Build and run reliable browser automations as code",
+          "sourceHint": "HN story link"
+        }
+      },
+      {
+        "source": "Hacker News",
+        "title": "Show HN: We built an 8-bit CPU as 2nd year EE students",
+        "url": "https://github.com/c0rRupT9/STEPLA-1",
+        "publishedAt": "2026-06-15T20:22:48.000Z",
+        "engagement": 242,
+        "impressions": 3088,
+        "excerpt": "Hi! me and my friends together built an 8 bit CPU implemented in Logisim purely from scratch. The control unit of this system does not implement the generic microcode ROM or any kind of RAM. This was made purely from discrete logic gates and coded the system to run different programs.<p>key features: Custom 16-instruction Harvard ISA, 8-bit fixed format, 4 general purpose registers<p>Hardwired control unit built entirely from AND&#x2F;OR gate logic matrix<p>Dual-phase clocking to eliminate race conditions<p>Bootstrap Control Unit that cold-boots via ROM-to-RAM transfer Early-exit conditional branching that saves upto 25% cycles when conditions aren&#x27;t met<p>Full design specification document with version control<p>Since this was our first time doing such teamwork and a new thing we used RISC based system that fetches an 8-bit instruction from Instruction memory 4 bits of which translate to an instruction the last two bits are for source and destination registers. There are a total of 4 registers in the system with two memory units namely Data SRAM and I SRAM, the system follows a Harvard architecture.<p>There are design discrepancies too since it was our first time designing such a system and on top of that completely hardwired too.<p>To solve the problem of cold booting a bootloader is present too that copies the contents of a temporary ROM into instruction RAM and then hands over the reins to the CPU.<p>We also implemented conditional branching as well as early exit branching too that only checks for zero or carry flag and branches without wasting cycles, if the conditions are not met the Program counter increments.<p>Moreover we also created a complete documentation with version control describing each necessary part assuming prior knowledge.<p>Please take a look at it at <a href=\"https:&#x2F;&#x2F;github.com&#x2F;c0rRupT9&#x2F;STEPLA-1\" rel=\"nofollow\">https:&#x2F;&#x2F;github.com&#x2F;c0rRupT9&#x2F;STEPLA-1</a><p>For future development I want to implement a RISC CPU using FPGA&#x27;s and connect it to an actual DRAM. We are also selling the full spec document and Logisim files for $5 to fund our passion <a href=\"https:&#x2F;&#x2F;tcfdiq.gumroad.com&#x2F;l&#x2F;zyyux\" rel=\"nofollow\">https:&#x2F;&#x2F;tcfdiq.gumroad.com&#x2F;l&#x2F;zyyux</a> Thankyou!",
+        "media": {
+          "kind": "article",
+          "altText": "Show HN: We built an 8-bit CPU as 2nd year EE students",
+          "sourceHint": "HN story link"
+        }
+      },
+      {
+        "source": "#founderculture | TikTok",
+        "title": "founder culture trending on TikTok Discover",
+        "url": "https://www.tiktok.com/discover/founder%20culture",
+        "publishedAt": "2026-06-20T00:01:33.803Z",
+        "engagement": 85,
+        "impressions": 1200,
+        "engagementRate": 0.071,
+        "excerpt": "Short-form video content about founder culture is gaining momentum on TikTok",
+        "media": {
+          "kind": "video",
+          "altText": "TikTok trend: founder culture",
+          "sourceHint": "TikTok Discover page"
+        }
+      },
+      {
+        "source": "Hacker News",
+        "title": "Ask HN: Is anyone shorting the overspend in AI yet?",
+        "url": "https://news.ycombinator.com/item?id=48486763",
+        "publishedAt": "2026-06-11T06:05:41.000Z",
+        "engagement": 73,
+        "impressions": 948,
+        "excerpt": "I and a small cohort of friends truly believe that the &quot;$1T&quot; floats are going to burn capital. We think this is a disaster of landgrab spend, and that the cost of a token cannot be recovered by future commercial use.<p>If this theory is correct, then following on from the housing debt crisis, this is a hollow shell and so somebody in finance should be shorting the floats, and betting on a crash to clean up.<p>Polymarket betting aside, is anyone able to confirm that there are funds looking at a short play in the AI space, or is everyone on-board with things and nobody is taking the other side of the bet?<p>I am not in fintech or investing, I am not seeking alpha to do this, I don&#x27;t invest directly. I am however interested in validating my theory that somebody smart out there sees a huge upside in the explosion when this attempt to buy market share in Unicorn juice explodes.<p>NVDA as an example has under 2% of its trade in shorts. I can&#x27;t tell if thats big or small TBH. Feels small.",
+        "media": {
+          "kind": "article",
+          "altText": "Ask HN: Is anyone shorting the overspend in AI yet?",
+          "sourceHint": "HN story link"
+        }
+      },
+      {
+        "source": "Hacker News",
+        "title": "Show HN: Startup sci-fi novel that took me 5 years to write",
+        "url": "https://www.blockchainednovel.com/",
+        "publishedAt": "2026-06-08T16:29:38.000Z",
+        "engagement": 69,
+        "impressions": 884,
+        "excerpt": "It started after reading Stephen King&#x27;s &quot;On Writing&quot; where he likened the art of writing as the unearthing of an archeological site after you stumbled upon a unique bone of a story. His advice was to choose a domain you are deeply intimate with. For me, I&#x27;ve been a struggling startup founder for 15 years—enough material to inspire a novel.<p>A 1,000-word writing exercise turned into a complete 125k-word manuscript over the course of a year.<p>In year 1, I learned the sheer joy of unencumbered creative flow and authentic expression. A similar flow I used to get from coding (and more recently vibe coding). What made it effortless was a mindset that I was writing for the sake of it, not with the intention of publishing.<p>After a year of keeping it close to my chest, I decided to show it to a few close friends. They liked some of it, destroyed some of it. Some ultimately encouraged me to publish it.<p>In year 2, I learned about the chasm between writing for myself and writing for an audience. Nerdy stuff I thought were clever completely flew over my readers&#x27; heads. So I studied a dozen textbooks on literature, prose, poetry, voice, grammar, and completely rewrote the manuscript twice over, this time with the audience in mind. There is a lot more finesse to writing than I originally appreciated.<p>In year 3, I felt ready to pitch literary agents. The reason wasn&#x27;t to make a career out of writing, but to learn from professionals. After 100 personalized pitches and 0 offers of representation, I learned that pitching agents was much harder than pitching VCs. Especially for a niche novel like mine; fellow startup founders was too small of a TAM.<p>In year 4, I engaged with a professional author&#x2F;editor (Rob Hart, author of The Warehouse), who gave me essays worth of incredible developmental feedback. Lots of nuanced feedback I couldn&#x27;t get from textbooks. Per his advice, I started back at chapter 1 and refactored the whole manuscript. I distilled it down to the best 88k words.<p>The tinkering never stops; when do you know it&#x27;s done? I realized that I kept on tinkering because it was more comfortable than overcoming the fear of launching. Today, on 06&#x2F;08&#x2F;26, almost 5 years after that Stephen King writing exercise, I&#x27;m ready to say “ship it.”<p>Blockchained is a near-future startup sci-fi thriller that chronicles a struggling startup founder who meets a mysterious investor in Hong Kong. Little does he know that the too-good-to-be-true investor works for the Chinese government.<p>Blockchained was written for the fellow startup founders, engineers, and near-future sci-fi enthusiasts. In other words, HN community, you are my target audience<p>Sample chapters available at <a href=\"https:&#x2F;&#x2F;www.blockchainednovel.com&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;www.blockchainednovel.com&#x2F;</a> — eBook and paperback available today. Hardcover edition coming soon.<p>I suppose we live in an era where it must be qualified that Blockchained was 99.9% lovingly handcrafted. No AI was used to write this novel aside from research, spellcheck, grammar, and the occasional phrasing checks.",
+        "media": {
+          "kind": "article",
+          "altText": "Show HN: Startup sci-fi novel that took me 5 years to write",
+          "sourceHint": "HN story link"
+        }
+      },
+      {
+        "source": "Instagram Reels Explorer",
+        "title": "founder culture Reels gaining traction on Instagram",
+        "url": "https://www.instagram.com/explore/tags/founder%20culture/",
+        "publishedAt": "2026-06-20T00:01:33.803Z",
+        "engagement": 72,
+        "impressions": 980,
+        "engagementRate": 0.073,
+        "excerpt": "Instagram creators are posting Reels about founder culture",
+        "media": {
+          "kind": "video",
+          "altText": "Instagram Reels trend: founder culture",
+          "sourceHint": "Instagram Explore"
+        }
+      },
+      {
+        "source": "Google News",
+        "title": "Founder’s Weight 2.0 brings entrepreneurs, business operators together in Lagos - The Guardian Nigeria News",
+        "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQMUlObXhuRXZ3YXJabWpVWExuN0dKMXZURi1NVURJRjZwcUFwc3JkaU14TG9nN3Z6RmNUQkt4enBrRnU4NjVFTzlETU5Va1E3cWpoWnpMcl9IdXF1Vlk1alE5X1NQQzJienNDTkc0RHV2RlEtOHlQaVZ1Tkxwam1Wcm5qcExGUDBlQWh5NTRib0gtRVlaODVmZGZ6WGlYbTBMM3kycU1B?oc=5",
+        "publishedAt": "2026-06-07T07:00:00.000Z",
+        "engagement": 35,
+        "impressions": 420,
+        "excerpt": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxQMUlObXhuRXZ3YXJabWpVWExuN0dKMXZURi1NVURJRjZwcUFwc3JkaU14TG9nN3Z6RmNUQkt4enBrRnU4NjVFTzlETU5Va1E3cWpoWnpMcl9IdXF1Vlk1alE5X1NQQzJienNDTkc0RHV2RlEtOHlQaVZ1Tkxwam1Wcm5qcExGUDBlQWh5NTRib0gtRVlaODVmZGZ6WGlYbTBMM3kycU1B?oc=5\" target=\"_blank\">Founder’s Weight 2.0 brings entrepreneurs, business operators together in Lagos</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Guardian Nigeria News</font>",
+        "media": {
+          "kind": "article",
+          "altText": "Founder’s Weight 2.0 brings entrepreneurs, business operators together in Lagos - The Guardian Nigeria News",
+          "sourceHint": "RSS news item"
+        }
+      },
+      {
+        "source": "Google News",
+        "title": "Hustle Culture Is Outdated — Here’s What Actually Scales a Business - entrepreneur.com",
+        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOTGxkalRwY1RmUWJHcFBNTFhIaVdpMHlndllBNXpWTWhnSkt3cHM1dElXRVgtS3pkeERsLTNEVkJmNWV0VGtVSk50Q2JTd1ROQTNZRFhod3ZRU3IyczJQc3RlbTA2R1p1dExPcTF2cEtwOXptT19yYlhfLWVWdUVfRWVRMjhCVWxSUV9VMkVzSnpFeHd0eFVvQlcydTJLMzl1ZmphYXl2RnhzVkRU?oc=5",
+        "publishedAt": "2026-01-29T08:00:00.000Z",
+        "engagement": 35,
+        "impressions": 420,
+        "excerpt": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxOTGxkalRwY1RmUWJHcFBNTFhIaVdpMHlndllBNXpWTWhnSkt3cHM1dElXRVgtS3pkeERsLTNEVkJmNWV0VGtVSk50Q2JTd1ROQTNZRFhod3ZRU3IyczJQc3RlbTA2R1p1dExPcTF2cEtwOXptT19yYlhfLWVWdUVfRWVRMjhCVWxSUV9VMkVzSnpFeHd0eFVvQlcydTJLMzl1ZmphYXl2RnhzVkRU?oc=5\" target=\"_blank\">Hustle Culture Is Outdated — Here’s What Actually Scales a Business</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">entrepreneur.com</font>",
+        "media": {
+          "kind": "article",
+          "altText": "Hustle Culture Is Outdated — Here’s What Actually Scales a Business - entrepreneur.com",
+          "sourceHint": "RSS news item"
+        }
+      },
+      {
+        "source": "Google News",
+        "title": "Rep Urs rallying cry: Why a thriving KC requires a City of Entrepreneurs - Startland News",
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBHWXMtSDJzWDFkbU9CRmVUeHRReVBNdFRzbS1HNXpROWhUU2NzMXFrSlRJZGY5MG1mbnR5NDN4VDhRSHo4WEhWRHdXazQ3TmxoV0pBRHpiMUc1UDRtVnFQakF6aFp4X1VPbEd4bG8wRFBIQQ?oc=5",
+        "publishedAt": "2026-04-15T07:00:00.000Z",
+        "engagement": 35,
+        "impressions": 420,
+        "excerpt": "<a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTFBHWXMtSDJzWDFkbU9CRmVUeHRReVBNdFRzbS1HNXpROWhUU2NzMXFrSlRJZGY5MG1mbnR5NDN4VDhRSHo4WEhWRHdXazQ3TmxoV0pBRHpiMUc1UDRtVnFQakF6aFp4X1VPbEd4bG8wRFBIQQ?oc=5\" target=\"_blank\">Rep Urs rallying cry: Why a thriving KC requires a City of Entrepreneurs</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Startland News</font>",
+        "media": {
+          "kind": "article",
+          "altText": "Rep Urs rallying cry: Why a thriving KC requires a City of Entrepreneurs - Startland News",
+          "sourceHint": "RSS news item"
+        }
+      },
+      {
+        "source": "Google News",
+        "title": "Entrepreneur, Wisewell co-founder Sami Khoreibi on why persistence still wins - Gulf Business",
+        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNRkxhSzlCcHRiczdLSzJDQjc4cmJRekV4MVc4V3prVk0yNjdsZ2wyT053WGdSX1JHeGQtTFhRbHdHeVZsRGtPb296MjN4TEtCLUY5LW00U2doWHJIdjNycWtwUF9wWFdpNjQ5ZGhza2pUTUIyUXo2Nm9HZ2ttUmtrek9IR1ZaNXNOX3R1TlkxdkFkdDVoYWc?oc=5",
+        "publishedAt": "2026-01-02T08:00:00.000Z",
+        "engagement": 35,
+        "impressions": 420,
+        "excerpt": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxNRkxhSzlCcHRiczdLSzJDQjc4cmJRekV4MVc4V3prVk0yNjdsZ2wyT053WGdSX1JHeGQtTFhRbHdHeVZsRGtPb296MjN4TEtCLUY5LW00U2doWHJIdjNycWtwUF9wWFdpNjQ5ZGhza2pUTUIyUXo2Nm9HZ2ttUmtrek9IR1ZaNXNOX3R1TlkxdkFkdDVoYWc?oc=5\" target=\"_blank\">Entrepreneur, Wisewell co-founder Sami Khoreibi on why persistence still wins</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Gulf Business</font>",
+        "media": {
+          "kind": "article",
+          "altText": "Entrepreneur, Wisewell co-founder Sami Khoreibi on why persistence still wins - Gulf Business",
+          "sourceHint": "RSS news item"
+        }
+      },
+      {
+        "source": "Google News",
+        "title": "CMO Council Interview: Jarryd McDonald on Entrepreneurship, Brand Building and Culture Cartel - The Wise Marketer",
+        "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOMmVWUmJ3OTg5bTZnc3hDUXMtbUFXYUZXQm9ndEhFejFUT2t2U0JIeWV0LUt3Y0xKeVBrV05kOHNoWVNMNkt3c3JKRVBTTmlqWEpuVFhWckJrbk5WblJqN3FDVnozeGlkNFFvQTZyUWdpeDZuSmdjY3YwNDlhMDFqQTV6cFpqWkJWNDJITTZ6SFdsNklMend5VW9jMkY?oc=5",
+        "publishedAt": "2025-12-09T08:00:00.000Z",
+        "engagement": 35,
+        "impressions": 420,
+        "excerpt": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxOMmVWUmJ3OTg5bTZnc3hDUXMtbUFXYUZXQm9ndEhFejFUT2t2U0JIeWV0LUt3Y0xKeVBrV05kOHNoWVNMNkt3c3JKRVBTTmlqWEpuVFhWckJrbk5WblJqN3FDVnozeGlkNFFvQTZyUWdpeDZuSmdjY3YwNDlhMDFqQTV6cFpqWkJWNDJITTZ6SFdsNklMend5VW9jMkY?oc=5\" target=\"_blank\">CMO Council Interview: Jarryd McDonald on Entrepreneurship, Brand Building and Culture Cartel</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Wise Marketer</font>",
+        "media": {
+          "kind": "article",
+          "altText": "CMO Council Interview: Jarryd McDonald on Entrepreneurship, Brand Building and Culture Cartel - The Wise Marketer",
+          "sourceHint": "RSS news item"
+        }
+      }
+    ],
+    "brief": {
+      "trend": {
+        "topic": "Launch HN: Adam (YC W25) – Open-Source AI CAD",
+        "angle": "Use the trend to show the real pressure behind building a Kenyan company, not just the hype. Founders relate to founders—make the story personal.",
+        "lifespan": "3-7 days",
+        "confidence": "High enough for a same-day content brief; refresh the scan when the conversation shifts.",
+        "whyItMatters": "It maps quickly to audience identity, which keeps the conversation moving in founder circles. The longer lifespan lets you catch follow-up angles."
+      },
+      "hook": "Everyone is talking about launch hn: adam (yc w25) – open-source ai cad, but founders should care because it changes how money, attention, or trust moves.",
+      "script": [
+        "[HOOK - 3 seconds] \"Everyone's talking about launch hn: adam (yc w25) – open-source ai cad, but here's what founders in Kenya are missing...\"",
+        "[CONTEXT - 7 seconds] Explain the trend in one clear sentence: why it's happening NOW and why momentum matters",
+        "[KUZANA ANGLE - 10 seconds] Connect to one founder problem: cash flow challenges, hiring friction, or going-to-market speed",
+        "[PROOF - 8 seconds] Name ONE public example from the scan: a founder, company, or behavior pattern that proves this trend is real",
+        "[CALL TO ACTION - 5-10 seconds] Tell founders exactly what to do this week: \"If you're in [industry], start [action] before this window closes\"",
+        "[CLOSE - 3 seconds] End with a question: \"Have you noticed this in your market? Comment your experience below\""
+      ],
+      "remixTemplate": [
+        "1. Trend signal: what is happening in one sentence.",
+        "2. Founder lens: why a Kenyan operator should care today.",
+        "3. Proof: a public example from the scan.",
+        "4. Action: what to do, say, or test next."
+      ],
+      "actionPlan": [
+        "⏱️ IMMEDIATE (Next 30 minutes): Hand the hook and script beats to your content lead.",
+        "🎬 PRODUCTION (Next 2 hours): Record a 30-60 second talking-head clip with one screen reference or B-roll.",
+        "📤 PUBLISH (Within trend lifespan): Post to TikTok, YouTube Shorts, and LinkedIn while the conversation is still happening.",
+        "🔄 ITERATE (Post-publish): Re-run the scan after publishing to catch follow-on angles or counter-perspectives.",
+        "💾 ARCHIVE: Save this brief with the trend lifespan window. Use it to train your content calendar model."
+      ]
+    },
+    "ranking": {
+      "score": 193,
+      "totalImpressions": 19284,
+      "averageEngagementRate": 0.07804397427919518,
+      "sourceDiversity": 4
+    },
+    "scannedAt": "2026-06-20T00:01:34.653Z"
+  },
+  {
+    "topic": "founder culture",
+    "topTrend": {
+      "title": "Launch HN: Adam (YC W25) – Open-Source AI CAD",
+      "topic": "founder culture",
+      "score": 193,
+      "sourceCount": 4,
+      "lifespan": "3-7 days",
+      "whyItMatters": "It maps quickly to audience identity, which keeps the conversation moving in founder circles. The longer lifespan lets you catch follow-up angles."
+    },
+    "items": [
+      {
+        "source": "Hacker News",
+        "title": "Launch HN: Adam (YC W25) – Open-Source AI CAD",
+        "url": "https://github.com/Adam-CAD/CADAM",
+        "publishedAt": "2026-06-17T16:14:04.000Z",
+        "engagement": 501,
+        "impressions": 6400,
+        "excerpt": "Hey HN! I&#x27;m Zach from Adam (<a href=\"https:&#x2F;&#x2F;adam.new&#x2F;\">https:&#x2F;&#x2F;adam.new&#x2F;</a>). We&#x27;re building AI agents for mechanical CAD software. We’ve built the company on two fundamental beliefs:<p>- AI will be the primary medium for creating mechanical designs just like it is in software today.<p>- The best paradigm for CAD generation is to generate CAD as code (text -&gt; code -&gt; CAD).<p>We’re building CADAM, an open source Text to CAD platform. It&#x27;s a React app (TanStack Start) with a Supabase backend for auth, database, and file storage. Think of it like AI TinkerCAD.<p>Demo: <a href=\"https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=iESOr7EGWqk\" rel=\"nofollow\">https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=iESOr7EGWqk</a> Try it: <a href=\"https:&#x2F;&#x2F;adam.new&#x2F;cadam&#x2F;\">https:&#x2F;&#x2F;adam.new&#x2F;cadam&#x2F;</a><p>What it does:<p>- Generates parametric 3D models from natural language, with support for both text prompts and image references.<p>- Outputs OpenSCAD code with automatically extracted parameters that surface as interactive sliders for instant dimension tweaking<p>- Exports as .STL or .SCAD (plus OBJ, GLB&#x2F;GLTF, FBX, and DXF)<p>Under the hood:<p>- One agentic endpoint with two modes that swap system prompts and tools: a parametric mode that writes&#x2F;edits OpenSCAD via a build_parametric_model tool, and a mesh mode that generates 3D textured meshes.<p>- Simple parameter tweaks bypass the model entirely; adjusting a slider does a deterministic regex update on the SCAD source, requiring no LLM call.<p>- Model-agnostic via the Vercel AI SDK: Anthropic (Claude), Google (Gemini), and OpenAI&#x2F;others through OpenRouter, with adaptive thinking auto-enabled on newer models. Surprisingly, in our evals Gemini 3.1 Pro is the top model.<p>- Runs fully in-browser by compiling OpenSCAD to WebAssembly (in a Web Worker, so the UI never blocks) and rendering with Three.js via React Three Fiber<p>- Supports BOSL, BOSL2, and MCAD libraries, plus custom font support (Geist) for text in models<p>Future improvements:<p>- Support both build123d and CadQuery. This will allow us to move beyond CSG primitives to constraint-driven modeling and provide direct comparisons to other code-as-CAD primitives.<p>- Better spatial context: UI for face&#x2F;edge selection and viewport image integration to give LLMs spatial understanding<p>You can clone the repo and run it locally! Contributions are very welcome.",
+        "media": {
+          "kind": "article",
+          "altText": "Launch HN: Adam (YC W25) – Open-Source AI CAD",
+          "sourceHint": "HN story link"
+        }
+      },
+      {
+        "source": "Hacker News",
+        "title": "Launch HN: Intuned (YC S22) – Build and run reliable browser automations as code",
+        "url": "https://intunedhq.com",
+        "publishedAt": "2026-06-08T13:35:27.000Z",
+        "engagement": 288,
+        "impressions": 3684,
+        "excerpt": "Hey HN, we&#x27;re Faisal and Ahmad from Intuned (<a href=\"https:&#x2F;&#x2F;intunedhq.com\">https:&#x2F;&#x2F;intunedhq.com</a>). We’re building a platform for building, deploying, and maintaining browser automations.<p>Customers primarily use the Intuned AI agent to automate websites that don&#x27;t expose APIs. Common use-cases include scraping data, pulling reports, and submitting forms. As the website changes, our agent also helps automatically heal the automation.<p>On Intuned, browser automations are created by an AI agent and run as <i>code</i>. Our infra captures the context of every run, allowing our agent to debug and maintain the underlying code - to keep the automations working over time. This way, we’re able to offer the predictability, speed, and cost of code, without the painful parts of writing and maintaining it.<p>Here’s a demo of building a scraper on Intuned: <a href=\"https:&#x2F;&#x2F;youtu.be&#x2F;ruZP73bK4FU\" rel=\"nofollow\">https:&#x2F;&#x2F;youtu.be&#x2F;ruZP73bK4FU</a><p>Here’s a demo of using AI to maintain a project: <a href=\"https:&#x2F;&#x2F;youtu.be&#x2F;e4R4hLdHBro\" rel=\"nofollow\">https:&#x2F;&#x2F;youtu.be&#x2F;e4R4hLdHBro</a><p>Backstory: we were accepted into YC for a completely different idea. During the batch, because of Faisal&#x27;s background at UiPath, several batchmates asked us whether RPA tools could fill API gaps in their products by automating websites without APIs. When it was time to pivot, we went back to those founders to dig deeper. (RPA in this context is referring to using UI automation to do complete non-testing tasks)<p>We discovered that the actual hard problem in browser automation is maintenance. Websites change, selectors break, and failures can be painful to reproduce and fix. So in early 2024, we decided to take a crack at this problem with a handful of customers. It needed a fair number of iterations before we landed on our current code-first approach.<p>How it works: Intuned is infra + agent, deeply integrated.<p>On the infrastructure side, Intuned is a managed runtime for browser automation code. Projects are usually Playwright-based TypeScript or Python. Users can write them directly in our online IDE, or hand the work off to the agent. Either way, once deployed, the platform runs each project in its own isolated machine and handles auth&#x2F;session reuse, scheduling, batch execution, concurrency, observability, and the other plumbing around running browser code.<p>On the agent side, it took us a few iterations to get to the current approach. Our initial attempts were rigid pipelines: collect requirements, inspect the site, generate code, then try to patch whatever broke. It looked reasonable on paper, but real websites are too messy for fixed paths. Late last year, we were planning to ship that version when stronger models landed and harnesses like Claude Code and Codex showed what a more open-ended coding agent could do. We built a prototype on the Claude Agent SDK, it felt much better than what we had, and we scrapped the release and decided to rebuild the agent.<p>The rebuild came down to three pieces around the SDK: an execution environment for running long agent sessions reliably, a CLI that exposes the platform to the agent so it operates Intuned the way engineers do, and a custom plugin (skills + MCP) built around what we&#x27;ve learned building browser automations.<p>The infra-agent integration is where the product gets more interesting. The runtime doesn&#x27;t just run the automation; it captures the context needed to debug it when it fails: params, results, traces, logs. That enables features like Fix with AI, where you can open a failed run and have the agent investigate and prepare a fix.<p>The same integration powers a feature called self-healing. For configured projects, the platform detects failures, starts an agent session with the relevant context, and either proposes a fix for review or deploys it automatically. Demo: <a href=\"https:&#x2F;&#x2F;youtu.be&#x2F;IVHIXw0lYMs\" rel=\"nofollow\">https:&#x2F;&#x2F;youtu.be&#x2F;IVHIXw0lYMs</a><p>We recently also packaged the infra and agent as an API called Web Task API, here is a demo: <a href=\"https:&#x2F;&#x2F;youtu.be&#x2F;1olRn3l95vw\" rel=\"nofollow\">https:&#x2F;&#x2F;youtu.be&#x2F;1olRn3l95vw</a><p>We strongly believe that browser automations can and should be faster, cheaper and more predictable. Check us out at <a href=\"https:&#x2F;&#x2F;app.intuned.io&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;app.intuned.io&#x2F;</a>, we have a free tier with trial credits for your first few automations. Excited to hear your thoughts, questions, and feedback!",
+        "media": {
+          "kind": "article",
+          "altText": "Launch HN: Intuned (YC S22) – Build and run reliable browser automations as code",
+          "sourceHint": "HN story link"
+        }
+      },
+      {
+        "source": "Hacker News",
+        "title": "Show HN: We built an 8-bit CPU as 2nd year EE students",
+        "url": "https://github.com/c0rRupT9/STEPLA-1",
+        "publishedAt": "2026-06-15T20:22:48.000Z",
+        "engagement": 239,
+        "impressions": 3048,
+        "excerpt": "Hi! me and my friends together built an 8 bit CPU implemented in Logisim purely from scratch. The control unit of this system does not implement the generic microcode ROM or any kind of RAM. This was made purely from discrete logic gates and coded the system to run different programs.<p>key features: Custom 16-instruction Harvard ISA, 8-bit fixed format, 4 general purpose registers<p>Hardwired control unit built entirely from AND&#x2F;OR gate logic matrix<p>Dual-phase clocking to eliminate race conditions<p>Bootstrap Control Unit that cold-boots via ROM-to-RAM transfer Early-exit conditional branching that saves upto 25% cycles when conditions aren&#x27;t met<p>Full design specification document with version control<p>Since this was our first time doing such teamwork and a new thing we used RISC based system that fetches an 8-bit instruction from Instruction memory 4 bits of which translate to an instruction the last two bits are for source and destination registers. There are a total of 4 registers in the system with two memory units namely Data SRAM and I SRAM, the system follows a Harvard architecture.<p>There are design discrepancies too since it was our first time designing such a system and on top of that completely hardwired too.<p>To solve the problem of cold booting a bootloader is present too that copies the contents of a temporary ROM into instruction RAM and then hands over the reins to the CPU.<p>We also implemented conditional branching as well as early exit branching too that only checks for zero or carry flag and branches without wasting cycles, if the conditions are not met the Program counter increments.<p>Moreover we also created a complete documentation with version control describing each necessary part assuming prior knowledge.<p>Please take a look at it at <a href=\"https:&#x2F;&#x2F;github.com&#x2F;c0rRupT9&#x2F;STEPLA-1\" rel=\"nofollow\">https:&#x2F;&#x2F;github.com&#x2F;c0rRupT9&#x2F;STEPLA-1</a><p>For future development I want to implement a RISC CPU using FPGA&#x27;s and connect it to an actual DRAM. We are also selling the full spec document and Logisim files for $5 to fund our passion <a href=\"https:&#x2F;&#x2F;tcfdiq.gumroad.com&#x2F;l&#x2F;zyyux\" rel=\"nofollow\">https:&#x2F;&#x2F;tcfdiq.gumroad.com&#x2F;l&#x2F;zyyux</a> Thankyou!",
+        "media": {
+          "kind": "article",
+          "altText": "Show HN: We built an 8-bit CPU as 2nd year EE students",
+          "sourceHint": "HN story link"
+        }
+      },
+      {
+        "source": "#founderculture | TikTok",
+        "title": "founder culture trending on TikTok Discover",
+        "url": "https://www.tiktok.com/discover/founder%20culture",
+        "publishedAt": "2026-06-20T00:01:20.315Z",
+        "engagement": 85,
+        "impressions": 1200,
+        "engagementRate": 0.071,
+        "excerpt": "Short-form video content about founder culture is gaining momentum on TikTok",
+        "media": {
+          "kind": "video",
+          "altText": "TikTok trend: founder culture",
+          "sourceHint": "TikTok Discover page"
+        }
+      },
+      {
+        "source": "Hacker News",
+        "title": "Ask HN: Is anyone shorting the overspend in AI yet?",
+        "url": "https://news.ycombinator.com/item?id=48486763",
+        "publishedAt": "2026-06-11T06:05:41.000Z",
+        "engagement": 73,
+        "impressions": 948,
+        "excerpt": "I and a small cohort of friends truly believe that the &quot;$1T&quot; floats are going to burn capital. We think this is a disaster of landgrab spend, and that the cost of a token cannot be recovered by future commercial use.<p>If this theory is correct, then following on from the housing debt crisis, this is a hollow shell and so somebody in finance should be shorting the floats, and betting on a crash to clean up.<p>Polymarket betting aside, is anyone able to confirm that there are funds looking at a short play in the AI space, or is everyone on-board with things and nobody is taking the other side of the bet?<p>I am not in fintech or investing, I am not seeking alpha to do this, I don&#x27;t invest directly. I am however interested in validating my theory that somebody smart out there sees a huge upside in the explosion when this attempt to buy market share in Unicorn juice explodes.<p>NVDA as an example has under 2% of its trade in shorts. I can&#x27;t tell if thats big or small TBH. Feels small.",
+        "media": {
+          "kind": "article",
+          "altText": "Ask HN: Is anyone shorting the overspend in AI yet?",
+          "sourceHint": "HN story link"
+        }
+      },
+      {
+        "source": "Hacker News",
+        "title": "Show HN: Startup sci-fi novel that took me 5 years to write",
+        "url": "https://www.blockchainednovel.com/",
+        "publishedAt": "2026-06-08T16:29:38.000Z",
+        "engagement": 69,
+        "impressions": 884,
+        "excerpt": "It started after reading Stephen King&#x27;s &quot;On Writing&quot; where he likened the art of writing as the unearthing of an archeological site after you stumbled upon a unique bone of a story. His advice was to choose a domain you are deeply intimate with. For me, I&#x27;ve been a struggling startup founder for 15 years—enough material to inspire a novel.<p>A 1,000-word writing exercise turned into a complete 125k-word manuscript over the course of a year.<p>In year 1, I learned the sheer joy of unencumbered creative flow and authentic expression. A similar flow I used to get from coding (and more recently vibe coding). What made it effortless was a mindset that I was writing for the sake of it, not with the intention of publishing.<p>After a year of keeping it close to my chest, I decided to show it to a few close friends. They liked some of it, destroyed some of it. Some ultimately encouraged me to publish it.<p>In year 2, I learned about the chasm between writing for myself and writing for an audience. Nerdy stuff I thought were clever completely flew over my readers&#x27; heads. So I studied a dozen textbooks on literature, prose, poetry, voice, grammar, and completely rewrote the manuscript twice over, this time with the audience in mind. There is a lot more finesse to writing than I originally appreciated.<p>In year 3, I felt ready to pitch literary agents. The reason wasn&#x27;t to make a career out of writing, but to learn from professionals. After 100 personalized pitches and 0 offers of representation, I learned that pitching agents was much harder than pitching VCs. Especially for a niche novel like mine; fellow startup founders was too small of a TAM.<p>In year 4, I engaged with a professional author&#x2F;editor (Rob Hart, author of The Warehouse), who gave me essays worth of incredible developmental feedback. Lots of nuanced feedback I couldn&#x27;t get from textbooks. Per his advice, I started back at chapter 1 and refactored the whole manuscript. I distilled it down to the best 88k words.<p>The tinkering never stops; when do you know it&#x27;s done? I realized that I kept on tinkering because it was more comfortable than overcoming the fear of launching. Today, on 06&#x2F;08&#x2F;26, almost 5 years after that Stephen King writing exercise, I&#x27;m ready to say “ship it.”<p>Blockchained is a near-future startup sci-fi thriller that chronicles a struggling startup founder who meets a mysterious investor in Hong Kong. Little does he know that the too-good-to-be-true investor works for the Chinese government.<p>Blockchained was written for the fellow startup founders, engineers, and near-future sci-fi enthusiasts. In other words, HN community, you are my target audience<p>Sample chapters available at <a href=\"https:&#x2F;&#x2F;www.blockchainednovel.com&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;www.blockchainednovel.com&#x2F;</a> — eBook and paperback available today. Hardcover edition coming soon.<p>I suppose we live in an era where it must be qualified that Blockchained was 99.9% lovingly handcrafted. No AI was used to write this novel aside from research, spellcheck, grammar, and the occasional phrasing checks.",
+        "media": {
+          "kind": "article",
+          "altText": "Show HN: Startup sci-fi novel that took me 5 years to write",
+          "sourceHint": "HN story link"
+        }
+      },
+      {
+        "source": "Instagram Reels Explorer",
+        "title": "founder culture Reels gaining traction on Instagram",
+        "url": "https://www.instagram.com/explore/tags/founder%20culture/",
+        "publishedAt": "2026-06-20T00:01:20.316Z",
+        "engagement": 72,
+        "impressions": 980,
+        "engagementRate": 0.073,
+        "excerpt": "Instagram creators are posting Reels about founder culture",
+        "media": {
+          "kind": "video",
+          "altText": "Instagram Reels trend: founder culture",
+          "sourceHint": "Instagram Explore"
+        }
+      },
+      {
+        "source": "Google News",
+        "title": "Founder’s Weight 2.0 brings entrepreneurs, business operators together in Lagos - The Guardian Nigeria News",
+        "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQMUlObXhuRXZ3YXJabWpVWExuN0dKMXZURi1NVURJRjZwcUFwc3JkaU14TG9nN3Z6RmNUQkt4enBrRnU4NjVFTzlETU5Va1E3cWpoWnpMcl9IdXF1Vlk1alE5X1NQQzJienNDTkc0RHV2RlEtOHlQaVZ1Tkxwam1Wcm5qcExGUDBlQWh5NTRib0gtRVlaODVmZGZ6WGlYbTBMM3kycU1B?oc=5",
+        "publishedAt": "2026-06-07T07:00:00.000Z",
+        "engagement": 35,
+        "impressions": 420,
+        "excerpt": "<a href=\"https://news.google.com/rss/articles/CBMipgFBVV95cUxQMUlObXhuRXZ3YXJabWpVWExuN0dKMXZURi1NVURJRjZwcUFwc3JkaU14TG9nN3Z6RmNUQkt4enBrRnU4NjVFTzlETU5Va1E3cWpoWnpMcl9IdXF1Vlk1alE5X1NQQzJienNDTkc0RHV2RlEtOHlQaVZ1Tkxwam1Wcm5qcExGUDBlQWh5NTRib0gtRVlaODVmZGZ6WGlYbTBMM3kycU1B?oc=5\" target=\"_blank\">Founder’s Weight 2.0 brings entrepreneurs, business operators together in Lagos</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Guardian Nigeria News</font>",
+        "media": {
+          "kind": "article",
+          "altText": "Founder’s Weight 2.0 brings entrepreneurs, business operators together in Lagos - The Guardian Nigeria News",
+          "sourceHint": "RSS news item"
+        }
+      },
+      {
+        "source": "Google News",
+        "title": "Hustle Culture Is Outdated — Here’s What Actually Scales a Business - entrepreneur.com",
+        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOTGxkalRwY1RmUWJHcFBNTFhIaVdpMHlndllBNXpWTWhnSkt3cHM1dElXRVgtS3pkeERsLTNEVkJmNWV0VGtVSk50Q2JTd1ROQTNZRFhod3ZRU3IyczJQc3RlbTA2R1p1dExPcTF2cEtwOXptT19yYlhfLWVWdUVfRWVRMjhCVWxSUV9VMkVzSnpFeHd0eFVvQlcydTJLMzl1ZmphYXl2RnhzVkRU?oc=5",
+        "publishedAt": "2026-01-29T08:00:00.000Z",
+        "engagement": 35,
+        "impressions": 420,
+        "excerpt": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxOTGxkalRwY1RmUWJHcFBNTFhIaVdpMHlndllBNXpWTWhnSkt3cHM1dElXRVgtS3pkeERsLTNEVkJmNWV0VGtVSk50Q2JTd1ROQTNZRFhod3ZRU3IyczJQc3RlbTA2R1p1dExPcTF2cEtwOXptT19yYlhfLWVWdUVfRWVRMjhCVWxSUV9VMkVzSnpFeHd0eFVvQlcydTJLMzl1ZmphYXl2RnhzVkRU?oc=5\" target=\"_blank\">Hustle Culture Is Outdated — Here’s What Actually Scales a Business</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">entrepreneur.com</font>",
+        "media": {
+          "kind": "article",
+          "altText": "Hustle Culture Is Outdated — Here’s What Actually Scales a Business - entrepreneur.com",
+          "sourceHint": "RSS news item"
+        }
+      },
+      {
+        "source": "Google News",
+        "title": "Rep Urs rallying cry: Why a thriving KC requires a City of Entrepreneurs - Startland News",
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBHWXMtSDJzWDFkbU9CRmVUeHRReVBNdFRzbS1HNXpROWhUU2NzMXFrSlRJZGY5MG1mbnR5NDN4VDhRSHo4WEhWRHdXazQ3TmxoV0pBRHpiMUc1UDRtVnFQakF6aFp4X1VPbEd4bG8wRFBIQQ?oc=5",
+        "publishedAt": "2026-04-15T07:00:00.000Z",
+        "engagement": 35,
+        "impressions": 420,
+        "excerpt": "<a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTFBHWXMtSDJzWDFkbU9CRmVUeHRReVBNdFRzbS1HNXpROWhUU2NzMXFrSlRJZGY5MG1mbnR5NDN4VDhRSHo4WEhWRHdXazQ3TmxoV0pBRHpiMUc1UDRtVnFQakF6aFp4X1VPbEd4bG8wRFBIQQ?oc=5\" target=\"_blank\">Rep Urs rallying cry: Why a thriving KC requires a City of Entrepreneurs</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Startland News</font>",
+        "media": {
+          "kind": "article",
+          "altText": "Rep Urs rallying cry: Why a thriving KC requires a City of Entrepreneurs - Startland News",
+          "sourceHint": "RSS news item"
+        }
+      },
+      {
+        "source": "Google News",
+        "title": "Entrepreneur, Wisewell co-founder Sami Khoreibi on why persistence still wins - Gulf Business",
+        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNRkxhSzlCcHRiczdLSzJDQjc4cmJRekV4MVc4V3prVk0yNjdsZ2wyT053WGdSX1JHeGQtTFhRbHdHeVZsRGtPb296MjN4TEtCLUY5LW00U2doWHJIdjNycWtwUF9wWFdpNjQ5ZGhza2pUTUIyUXo2Nm9HZ2ttUmtrek9IR1ZaNXNOX3R1TlkxdkFkdDVoYWc?oc=5",
+        "publishedAt": "2026-01-02T08:00:00.000Z",
+        "engagement": 35,
+        "impressions": 420,
+        "excerpt": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxNRkxhSzlCcHRiczdLSzJDQjc4cmJRekV4MVc4V3prVk0yNjdsZ2wyT053WGdSX1JHeGQtTFhRbHdHeVZsRGtPb296MjN4TEtCLUY5LW00U2doWHJIdjNycWtwUF9wWFdpNjQ5ZGhza2pUTUIyUXo2Nm9HZ2ttUmtrek9IR1ZaNXNOX3R1TlkxdkFkdDVoYWc?oc=5\" target=\"_blank\">Entrepreneur, Wisewell co-founder Sami Khoreibi on why persistence still wins</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Gulf Business</font>",
+        "media": {
+          "kind": "article",
+          "altText": "Entrepreneur, Wisewell co-founder Sami Khoreibi on why persistence still wins - Gulf Business",
+          "sourceHint": "RSS news item"
+        }
+      },
+      {
+        "source": "Google News",
+        "title": "CMO Council Interview: Jarryd McDonald on Entrepreneurship, Brand Building and Culture Cartel - The Wise Marketer",
+        "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOMmVWUmJ3OTg5bTZnc3hDUXMtbUFXYUZXQm9ndEhFejFUT2t2U0JIeWV0LUt3Y0xKeVBrV05kOHNoWVNMNkt3c3JKRVBTTmlqWEpuVFhWckJrbk5WblJqN3FDVnozeGlkNFFvQTZyUWdpeDZuSmdjY3YwNDlhMDFqQTV6cFpqWkJWNDJITTZ6SFdsNklMend5VW9jMkY?oc=5",
+        "publishedAt": "2025-12-09T08:00:00.000Z",
+        "engagement": 35,
+        "impressions": 420,
+        "excerpt": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxOMmVWUmJ3OTg5bTZnc3hDUXMtbUFXYUZXQm9ndEhFejFUT2t2U0JIeWV0LUt3Y0xKeVBrV05kOHNoWVNMNkt3c3JKRVBTTmlqWEpuVFhWckJrbk5WblJqN3FDVnozeGlkNFFvQTZyUWdpeDZuSmdjY3YwNDlhMDFqQTV6cFpqWkJWNDJITTZ6SFdsNklMend5VW9jMkY?oc=5\" target=\"_blank\">CMO Council Interview: Jarryd McDonald on Entrepreneurship, Brand Building and Culture Cartel</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Wise Marketer</font>",
+        "media": {
+          "kind": "article",
+          "altText": "CMO Council Interview: Jarryd McDonald on Entrepreneurship, Brand Building and Culture Cartel - The Wise Marketer",
+          "sourceHint": "RSS news item"
+        }
+      }
+    ],
+    "brief": {
+      "trend": {
+        "topic": "Launch HN: Adam (YC W25) – Open-Source AI CAD",
+        "angle": "Use the trend to show the real pressure behind building a Kenyan company, not just the hype. Founders relate to founders—make the story personal.",
+        "lifespan": "3-7 days",
+        "confidence": "High enough for a same-day content brief; refresh the scan when the conversation shifts.",
+        "whyItMatters": "It maps quickly to audience identity, which keeps the conversation moving in founder circles. The longer lifespan lets you catch follow-up angles."
+      },
+      "hook": "Everyone is talking about launch hn: adam (yc w25) – open-source ai cad, but founders should care because it changes how money, attention, or trust moves.",
+      "script": [
+        "[HOOK - 3 seconds] \"Everyone's talking about launch hn: adam (yc w25) – open-source ai cad, but here's what founders in Kenya are missing...\"",
+        "[CONTEXT - 7 seconds] Explain the trend in one clear sentence: why it's happening NOW and why momentum matters",
+        "[KUZANA ANGLE - 10 seconds] Connect to one founder problem: cash flow challenges, hiring friction, or going-to-market speed",
+        "[PROOF - 8 seconds] Name ONE public example from the scan: a founder, company, or behavior pattern that proves this trend is real",
+        "[CALL TO ACTION - 5-10 seconds] Tell founders exactly what to do this week: \"If you're in [industry], start [action] before this window closes\"",
+        "[CLOSE - 3 seconds] End with a question: \"Have you noticed this in your market? Comment your experience below\""
+      ],
+      "remixTemplate": [
+        "1. Trend signal: what is happening in one sentence.",
+        "2. Founder lens: why a Kenyan operator should care today.",
+        "3. Proof: a public example from the scan.",
+        "4. Action: what to do, say, or test next."
+      ],
+      "actionPlan": [
+        "⏱️ IMMEDIATE (Next 30 minutes): Hand the hook and script beats to your content lead.",
+        "🎬 PRODUCTION (Next 2 hours): Record a 30-60 second talking-head clip with one screen reference or B-roll.",
+        "📤 PUBLISH (Within trend lifespan): Post to TikTok, YouTube Shorts, and LinkedIn while the conversation is still happening.",
+        "🔄 ITERATE (Post-publish): Re-run the scan after publishing to catch follow-on angles or counter-perspectives.",
+        "💾 ARCHIVE: Save this brief with the trend lifespan window. Use it to train your content calendar model."
+      ]
+    },
+    "ranking": {
+      "score": 193,
+      "totalImpressions": 19244,
+      "averageEngagementRate": 0.07805030139264187,
+      "sourceDiversity": 4
+    },
+    "scannedAt": "2026-06-20T00:01:21.194Z"
+  },
+  {
     "topic": "ai tools",
     "topTrend": {
       "title": "ai tools trending on TikTok Discover",
