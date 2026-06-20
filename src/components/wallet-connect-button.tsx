@@ -3,6 +3,7 @@
 import { useActiveAccount, useConnect } from 'thirdweb/react';
 import { embeddedWallet } from 'thirdweb/wallets';
 import { useState } from 'react';
+import { client } from '@/lib/client';
 
 export function WalletConnectButton() {
   const account = useActiveAccount();
@@ -14,7 +15,7 @@ export function WalletConnectButton() {
     setIsLoading(true);
     setError(null);
     try {
-      await connect(embeddedWallet());
+      await connect(embeddedWallet({ chain: 'Avalanche', client }));
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Connection failed';
       setError(errorMsg);
