@@ -1,26 +1,21 @@
 'use client';
 
-import { useActiveAccount, useConnect } from 'thirdweb/react';
-import { embeddedWallet } from 'thirdweb/wallets';
+import { useActiveAccount, useConnectModal } from 'thirdweb/react';
 import { useState } from 'react';
 
 export function WalletConnectButton() {
   const account = useActiveAccount();
-  const { connect } = useConnect();
-  const [isLoading, setIsLoading] = useState(false);
+  const { connect, isConnecting } = useConnectModal();
   const [error, setError] = useState<string | null>(null);
 
   const handleConnect = async () => {
-    setIsLoading(true);
     setError(null);
     try {
-      await connect(embeddedWallet());
+      await connect();
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Connection failed';
       setError(errorMsg);
       console.error('Connection error:', err);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -37,10 +32,10 @@ export function WalletConnectButton() {
     <div className="flex flex-col gap-1">
       <button
         onClick={handleConnect}
-        disabled={isLoading}
+        disabled={isConnecting}
         className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#8ef0c9] to-[#6dd9a8] text-[#08111f] font-semibold text-sm transition-all duration-200 hover:shadow-xl hover:shadow-[#8ef0c9]/40 hover:scale-105 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100 whitespace-nowrap"
       >
-        {isLoading ? '⏳ Connecting...' : '🔗 Connect Wallet'}
+        {isConnecting ? '⏳ Connecting...' : '🔗 Connect Wallet'}
       </button>
       {error && <p className="text-xs text-red-400">{error}</p>}
     </div>
