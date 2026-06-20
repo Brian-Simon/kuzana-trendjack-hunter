@@ -28,6 +28,10 @@ export interface ContentBrief {
     whyItMatters?: string;
   };
   hook: string;
+  context: string;
+  angle: string;
+  proof: string;
+  cta: string;
   script: string[];
   remixTemplate: string[];
   actionPlan: string[];
