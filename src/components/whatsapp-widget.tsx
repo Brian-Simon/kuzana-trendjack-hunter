@@ -9,26 +9,31 @@ export function WhatsAppWidget() {
       href="https://wa.me/254786817637"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-40 group"
+      className="fixed bottom-8 right-8 z-50 group"
       aria-label="Chat with us on WhatsApp"
     >
       {/* Glow background circle */}
-      <div className="absolute inset-0 bg-green-500/20 rounded-full blur-2xl group-hover:bg-green-500/40 transition-all duration-300"></div>
+      <div className="absolute inset-0 bg-green-500/30 rounded-full blur-3xl group-hover:bg-green-500/50 transition-all duration-300 scale-125"></div>
       
       {/* Main button */}
-      <div className="relative w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full shadow-2xl group-hover:shadow-green-500/50 group-hover:scale-110 transition-all duration-300 flex items-center justify-center hover:from-green-300 hover:to-green-500">
+      <div className="relative w-20 h-20 bg-gradient-to-br from-green-400 via-green-500 to-green-600 rounded-full shadow-2xl group-hover:shadow-2xl group-hover:shadow-green-500/70 group-hover:scale-125 transition-all duration-300 flex items-center justify-center">
         <Image
           src="/images/whatsapp-3d.png"
-          alt="WhatsApp"
-          width={56}
-          height={56}
-          className="w-14 h-14 object-contain drop-shadow-lg"
+          alt="WhatsApp Chat"
+          width={64}
+          height={64}
+          className="w-16 h-16 object-contain drop-shadow-xl group-hover:drop-shadow-2xl transition-all"
           priority
         />
       </div>
       
       {/* Pulse animation */}
-      <div className="absolute inset-0 rounded-full bg-green-500/30 group-hover:bg-transparent animate-pulse"></div>
+      <div className="absolute inset-0 rounded-full bg-green-500/40 group-hover:bg-transparent animate-pulse group-hover:scale-150 transition-all duration-300"></div>
+      
+      {/* Tooltip */}
+      <div className="absolute bottom-full right-0 mb-4 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-lg">
+        Chat with us
+      </div>
     </Link>
   );
 }

@@ -71,9 +71,9 @@ export function ScanInterface() {
                 <button
                   onClick={runScan}
                   disabled={isPending || !account || !paymentComplete}
-                  className="rounded-2xl bg-[#8ef0c9] text-[#08111f] px-6 py-3 font-semibold hover:shadow-lg hover:shadow-[#8ef0c9]/50 disabled:opacity-60 disabled:cursor-not-allowed transition-all whitespace-nowrap"
+                  className="rounded-2xl bg-gradient-to-r from-[#8ef0c9] to-[#6dd9a8] text-[#08111f] px-8 py-3 font-semibold hover:shadow-xl hover:shadow-[#8ef0c9]/40 active:scale-95 transition-all whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 hover:scale-105"
                 >
-                  {isPending ? '🔄 Scanning...' : '🔍 Scan'}
+                  {isPending ? '⏳ Scanning...' : '🔍 Scan Trends'}
                 </button>
               </div>
             </label>

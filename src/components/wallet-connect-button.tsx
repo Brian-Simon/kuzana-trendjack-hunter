@@ -8,15 +8,17 @@ export function WalletConnectButton() {
   const account = useActiveAccount();
   const { connect } = useConnect();
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleConnect = async () => {
     setIsLoading(true);
+    setError(null);
     try {
-      // Show wallet options with embedded wallet
-      const result = await connect(embeddedWallet());
-      console.log('Connected:', result);
-    } catch (error) {
-      console.error('Connection error:', error);
+      await connect(embeddedWallet());
+    } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : 'Connection failed';
+      setError(errorMsg);
+      console.error('Connection error:', err);
     } finally {
       setIsLoading(false);
     }
@@ -24,19 +26,23 @@ export function WalletConnectButton() {
 
   if (account?.address) {
     return (
-      <div className="px-4 py-2 rounded-lg bg-[#8ef0c9]/10 border border-[#8ef0c9]/30 text-sm font-medium text-[#8ef0c9]">
-        {account.address.slice(0, 6)}...{account.address.slice(-4)}
+      <div className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#8ef0c9]/20 to-[#8ef0c9]/10 border border-[#8ef0c9]/50 text-sm font-semibold text-[#8ef0c9] shadow-lg shadow-[#8ef0c9]/20">
+        <span className="hidden sm:inline">{account.address.slice(0, 6)}...{account.address.slice(-4)}</span>
+        <span className="sm:hidden">✓ Connected</span>
       </div>
     );
   }
 
   return (
-    <button
-      onClick={handleConnect}
-      disabled={isLoading}
-      className="px-4 py-2 rounded-lg bg-[#8ef0c9] text-[#08111f] font-semibold hover:shadow-lg hover:shadow-[#8ef0c9]/50 hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm"
-    >
-      {isLoading ? 'Connecting...' : 'Connect Wallet'}
-    </button>
+    <div className="flex flex-col gap-1">
+      <button
+        onClick={handleConnect}
+        disabled={isLoading}
+        className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#8ef0c9] to-[#6dd9a8] text-[#08111f] font-semibold text-sm transition-all duration-200 hover:shadow-xl hover:shadow-[#8ef0c9]/40 hover:scale-105 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100 whitespace-nowrap"
+      >
+        {isLoading ? '⏳ Connecting...' : '🔗 Connect Wallet'}
+      </button>
+      {error && <p className="text-xs text-red-400">{error}</p>}
+    </div>
   );
 }
