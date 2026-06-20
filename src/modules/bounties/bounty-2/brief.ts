@@ -58,9 +58,9 @@ export function buildBrief(params: {
       whyItMatters: params.whyItMatters,
     },
     hook: `Everyone is talking about ${title.toLowerCase()}, but founders should care because it changes how money, attention, or trust moves.`,
-    context: `This trend emerged from public conversations and represents a significant shift in ${params.category || 'the market'}. It's gaining momentum and relevant to East African tech operators.`,
+    context: `This trend emerged from public conversations and represents a significant shift in the market. It's gaining momentum and relevant to East African tech operators.`,
     angle: params.angle,
-    proof: `Evidence gathered from trending sources: ${params.sources ? params.sources.slice(0, 2).join(', ') : 'multiple public sources'}`,
+    proof: 'Evidence gathered from trending sources and public conversations.',
     cta: 'Use this brief to create content within the next 2 hours while the trend is active.',
     script: scriptBeats,
     remixTemplate: [
